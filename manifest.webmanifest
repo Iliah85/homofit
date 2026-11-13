@@ -1,0 +1,38 @@
+{
+ "name": "هموفیت",
+ "short_name": "هموفیت",
+ "description": "دفتر تمرین و تغذیه",
+ "start_url": "index.html",
+ "scope": "./",
+ "display": "standalone",
+ "lang": "fa",
+ "dir": "rtl",
+ "background_color": "#ffffff",
+ "theme_color": "#c3302a",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
