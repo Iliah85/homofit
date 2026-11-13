@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>هموفیت</title>
 <meta name="description" content="دفتر تمرین و تغذیه">
-<meta name="theme-color" content="#1c5a9c">
+<meta name="theme-color" content="#a3212b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="هموفیت">
@@ -1807,17 +1807,28 @@ dialog.lb::backdrop{background:#070a10}
 }
 
 /* ==========================================================================
-   HomoFit on top of HomoPlanner's theme: the same blue notebook, red ink instead of blue.
+   HomoFit on top of HomoPlanner's theme: the same notebook, but red.
    Only what HomoPlanner doesn't already have lives here.
    ========================================================================== */
-:root{--blue:#d32a35;--on-blue:#fff}
-:root[data-theme="dark"]{--blue:#ff8d80;--on-blue:#2a0d0a}
-.chk:checked::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 18 C8 21 11 25 13 28 C17 18 22 10 30 3' fill='none' stroke='%23d32a35' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+:root{--blue:#c41f2b;--on-blue:#fff;--page:#a3212b;--page-2:#b52f39;--page-3:#c43d47}
+:root[data-theme="dark"]{--blue:#ff8d80;--on-blue:#2a0d0a;--page:#561419;--page-2:#661b21;--page-3:#76222a}
+/* same hand-ruled grid; the cloudy shade is tinted red instead of blue */
+.sheet{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='208' height='208' fill='none' stroke='%23fff' stroke-opacity='.3' stroke-width='1.25'%3E%3Cpath d='M26 0C25 26 28 52 26 78S24 130 27 156 25 182 26 208M78 0C80 30 76 58 78 84S81 136 77 160 79 186 78 208M130 0C128 24 132 56 130 80S127 132 131 158 129 186 130 208M182 0C184 28 180 54 182 82S185 134 181 156 183 184 182 208'/%3E%3Cpath d='M0 26C26 25 52 28 78 26S130 24 156 27 182 25 208 26M0 78C30 80 58 76 84 78S136 81 160 77 186 79 208 78M0 130C24 128 56 132 80 130S132 127 158 131 186 129 208 130M0 182C28 184 54 180 82 182S134 185 156 181 184 183 208 182'/%3E%3C/svg%3E"),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .02' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .28 0 0 0 0 .02 0 0 0 0 .04 0 0 0 .42 -.1'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23c)'/%3E%3C/svg%3E");
+  box-shadow:-3px 3px 0 -1px var(--page-2),-6px 6px 0 -2px var(--page-3),0 3px 6px rgba(65,20,20,.2),0 18px 44px rgba(65,20,20,.3);
+  --soft-1:0 1px 2px rgba(52,6,10,.26),0 5px 14px rgba(52,6,10,.26);
+  --soft-2:0 2px 5px rgba(52,6,10,.3),0 12px 28px rgba(52,6,10,.36);
+  --sticker:0 1px 2px rgba(52,6,10,.38),0 5px 12px rgba(52,6,10,.42)}
+.chk:checked::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 18 C8 21 11 25 13 28 C17 18 22 10 30 3' fill='none' stroke='%23c41f2b' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 .toast.out{opacity:0;transition:opacity .35s}
 .page-head{align-items:center}
-.stack-lg{display:flex;flex-direction:column;gap:34px;margin-top:22px}
-.sheets.fit{gap:34px 24px;margin-top:22px}
-.stat-row{margin-top:6px}
+
+/* breathing room: blocks are far apart, things inside a block are close */
+.stack-lg{display:flex;flex-direction:column;gap:48px;margin-top:30px}
+.sheets.fit{gap:48px 28px;margin-top:30px}
+.stat-row{margin-top:10px}
+.paper{padding:18px 18px 24px}
+.sheet-body{padding-top:32px}
 
 /* session picker */
 .seg.fit{border:0;background:var(--card);border-radius:999px;box-shadow:var(--soft-1);padding:3px;gap:2px}
@@ -1825,67 +1836,84 @@ dialog.lb::backdrop{background:#070a10}
 .seg.fit button+button{border:0}
 .seg.fit button.on{background:var(--blue);color:var(--on-blue)}
 
-/* one exercise = one ribbon + its sets */
-.ex{margin-bottom:18px}
-.ex:last-child{margin-bottom:0}
-.ex .t-head{--dc:var(--blue)}
-.ex{margin-bottom:10px}
-.ex-toggle{width:100%;border:0;font:inherit;cursor:pointer;text-align:right;color:var(--ink)}
-.ex.open .t-head{--dc:#f08a8f}
-.ex.done .chip{color:var(--green);border-color:var(--green)}
-.ex.open{margin-bottom:16px}
-.ex.done .t-head{background:var(--paper-2)}
-.ex .chip{flex:none}
-.ex .ex-body{padding:6px 4px 0}
-.ex .t-meta{display:block;font-size:13px;margin-bottom:6px}
-.ex .up{color:var(--green);font-weight:800}
-.ex details{font-size:13px;color:var(--t-meta);margin-bottom:6px}
-.ex summary{cursor:pointer;font-weight:700;width:fit-content}
-.setrow{display:grid;grid-template-columns:22px repeat(3,minmax(0,1fr)) 34px;gap:6px;align-items:center;margin-top:6px;max-width:440px}
-.setrow .n{font-weight:900;color:var(--t-meta);text-align:center;font-size:14px}
-.setrow .inp{min-height:40px;padding:4px 2px;text-align:center;font-weight:800;font-size:16px}
-.setrow .inp::placeholder{color:var(--t-meta);opacity:.6;font-weight:600}
-.setrow.ok .inp{background:color-mix(in srgb,var(--green) 13%,var(--card))}
-.setrow .chk{margin:0;justify-self:center}
-.sethead{display:grid;grid-template-columns:22px repeat(3,minmax(0,1fr)) 34px;gap:6px;max-width:440px;font-size:11.5px;color:var(--t-meta);text-align:center;font-weight:700}
-.addset{margin-top:6px;font-size:13px}
+/* exercises: plain lines, only the open one gets a ribbon */
+.ex-toggle{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;font:inherit;cursor:pointer;text-align:right;color:var(--ink);padding:11px 4px;border-bottom:1px solid var(--line)}
+.ex:last-child .ex-toggle{border-bottom:0}
+.ex-toggle .t-title{flex:1;font-size:16px;font-weight:800;color:var(--t-strong)}
+.ex-toggle .st{font-size:13px;color:var(--t-meta);font-weight:700;white-space:nowrap}
+.ex.done .ex-toggle .t-title{color:var(--t-meta);font-weight:500}
+.ex.done .st{color:var(--green)}
+.ex.open{margin:6px 0 14px}
+.ex.open .ex-toggle{background:color-mix(in srgb,var(--blue) 12%,var(--card));border-radius:var(--r-s);border-bottom:0;padding:10px 12px}
+.ex-body{padding:10px 2px 4px}
+.ex-body .t-meta{display:block;font-size:13px;color:var(--t-meta);margin-bottom:10px}
+.ex-body .up{color:var(--green);font-weight:800}
+.ex-body details{font-size:13px;color:var(--t-meta);margin:-4px 0 10px}
+.ex-body summary{cursor:pointer;font-weight:700;width:fit-content}
 
-/* meals + simple rows */
-.meal{margin-bottom:12px}
-.meal:last-child{margin-bottom:0}
-.meal .t-head{--dc:#e9b84a}
-.meal.done .t-head{background:var(--paper-2)}
-.meal.done .t-title{color:var(--t-meta);font-weight:500}
-.tm{font-weight:800;color:var(--blue);font-size:14px;white-space:nowrap}
-.kc{font-size:12.5px;color:var(--t-meta);white-space:nowrap}
-.meal .t-desc{font-size:13.5px;padding:4px 6px 0}
-.opts{display:flex;gap:5px;flex-wrap:wrap;padding:6px 4px 0}
-.opts .chip{cursor:pointer;background:var(--card);min-height:26px}
-.opts .chip.on{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
-.sum{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line-2);font-size:14px;font-weight:700;color:var(--t-body)}
-.rows .r{display:flex;align-items:center;gap:8px;padding:8px 2px;border-bottom:1px dashed var(--line)}
+/* a set: tick, weight stepper, reps stepper, RIR chip. No typing. */
+.sethead,.setrow{display:grid;grid-template-columns:32px minmax(0,1.25fr) minmax(0,1fr) 44px;gap:8px;align-items:center;max-width:460px}
+.sethead{font-size:11.5px;color:var(--t-meta);font-weight:700;text-align:center;margin-bottom:2px}
+.setrow{margin-top:8px}
+.setrow .chk{margin:0;justify-self:center}
+.stp{display:flex;align-items:center;background:var(--paper-2);border-radius:var(--r-s);min-height:42px;overflow:hidden}
+.stp button{border:0;background:transparent;cursor:pointer;font:inherit;color:var(--ink)}
+.stp .pm{width:34px;align-self:stretch;font-size:20px;font-weight:700;color:var(--t-meta)}
+.stp .pm:hover{background:var(--paper-3)}
+.stp .v{flex:1;min-width:0;font-weight:900;font-size:17px;color:var(--t-strong);padding:0}
+.setrow.ok .stp{background:color-mix(in srgb,var(--green) 14%,var(--card))}
+.rir{border:0;background:var(--paper-2);border-radius:999px;min-height:34px;font:inherit;font-weight:800;color:var(--t-body);cursor:pointer}
+.addset{margin-top:12px;font-size:13.5px}
+.pick-big{text-align:center;font-weight:900;font-size:40px;line-height:1.2;color:var(--t-strong)}
+.pick-big small{font-size:15px;font-weight:700;color:var(--t-meta)}
+input[type=range].slide{width:100%;accent-color:var(--blue);height:34px}
+.pick-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* meals: a plain checklist on yellow note paper, so it never looks like the workout */
+.paper.note{--nc:var(--n-y);background:var(--nc)}
+.paper.note,.paper.note .t-title{color:var(--note-ink)}
+.meal{display:flex;gap:10px;align-items:flex-start;padding:10px 2px;border-bottom:1px dashed rgba(70,55,10,.25)}
+.meal:last-of-type{border-bottom:0}
+.meal .chk{margin-top:2px;background:#fff}
+.meal .mbody{flex:1;min-width:0}
+.meal .mtop{display:flex;align-items:baseline;gap:8px}
+.meal .mtop b{font-weight:800;font-size:15.5px}
+.tm{font-weight:800;color:#8a1520;font-size:13.5px;white-space:nowrap;margin-inline-start:auto}
+.meal .items{font-size:13px;color:#5d5a50;margin-top:1px;line-height:1.6}
+.meal.done b{text-decoration:line-through;text-decoration-color:#8a1520;font-weight:500}
+.meal.done .items{opacity:.6}
+.opts{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.opts .chip{cursor:pointer;background:rgba(255,255,255,.7);min-height:26px;color:var(--note-ink);border-color:rgba(70,55,10,.25)}
+.opts .chip.on{background:#8a1520;border-color:#8a1520;color:#fff}
+.sum{margin-top:14px;padding-top:12px;border-top:1.5px solid rgba(70,55,10,.25);font-size:14px;font-weight:800;color:var(--note-ink)}
+
+.meal-ed{margin-bottom:26px}
+.meal-ed .t-head{--dc:#e9b84a}
+/* lists elsewhere */
+.rows .r{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line)}
 .rows .r:last-child{border-bottom:0}
 .rows .r b{font-weight:800;color:var(--t-strong)}
 .rows .r small{color:var(--t-meta);font-size:13px}
-.rows .r .chip{flex:none}
+.rows .r .chip{flex:none;margin-inline-start:auto}
 .rows .r.done b{text-decoration:line-through;color:var(--t-meta);font-weight:500}
-.rows h4{font-size:13px;color:var(--t-meta);font-weight:800;margin:10px 0 0}
+.rows h4{font-size:12.5px;color:var(--t-meta);font-weight:800;margin:16px 0 2px;letter-spacing:.2px}
 .rows h4:first-child{margin-top:0}
 .vol{width:100%;border-collapse:collapse;font-size:14px}
-.vol td{padding:4px 2px;border-bottom:1px dashed var(--line)}
+.vol td{padding:6px 2px;border-bottom:1px solid var(--line)}
 .vol td:nth-child(2){text-align:center;font-weight:800;color:var(--t-strong)}
 .vol td:last-child{text-align:left;width:1%;white-space:nowrap}
 .vol .bad{color:var(--red);font-weight:800}
 .vol .ok{color:var(--green)}
 .vol .opt{color:var(--t-meta)}
-.warns{display:flex;flex-direction:column;gap:6px}
-.warn-line{background:var(--n-y);color:var(--note-ink);border-radius:var(--r-s);padding:6px 12px;font-size:14px;font-weight:700;box-shadow:var(--soft-1)}
+.warns{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.warn-line{background:var(--n-y);color:var(--note-ink);border-radius:var(--r-s);padding:8px 14px;font-size:14px;font-weight:700;box-shadow:var(--soft-1)}
 .stat-row.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 .chart-svg{width:100%;height:auto;max-height:230px;display:block}
 .chart-svg .g{stroke:var(--line);stroke-dasharray:3 3}
 .chart-svg .avg{fill:none;stroke:var(--blue);stroke-width:2.4}
 .chart-svg .pt{fill:var(--card);stroke:var(--s-ink-2);stroke-width:1.4}
 .chart-svg text{font-size:10px;fill:var(--t-meta)}
+details.more{margin-top:14px}
 details.more>summary{cursor:pointer;color:var(--ink);font-weight:800;width:fit-content;list-style:none;display:inline-flex;gap:6px;align-items:center}
 details.more>summary::-webkit-details-marker{display:none}
 .set-card details>summary{cursor:pointer;font-weight:800}
@@ -1896,7 +1924,11 @@ details.more>summary::-webkit-details-marker{display:none}
 #pill .lbl{max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;opacity:.85}
 @media (max-width:860px){
   .tab,.tab:hover,.tab[aria-current="page"]{flex:1 1 0;width:auto}
-  .setrow,.sethead{max-width:none}
+  .sethead,.setrow{max-width:none}
+}
+@media (max-width:380px){
+  .sethead,.setrow{grid-template-columns:30px minmax(0,1.2fr) minmax(0,1fr) 40px;gap:6px}
+  .stp .pm{width:28px}
 }
 
 </style>
@@ -2378,7 +2410,7 @@ function adherence(days) {
 /* ========== UI: HomoPlanner's notebook, pasted sheets, sticker titles ========== */
 const TABS = [['today', 'امروز', 'sun'], ['program', 'تمرین', 'dumbbell'], ['food', 'تغذیه', 'bowl'], ['body', 'بدن', 'chart'], ['shop', 'خرید', 'cart'], ['more', 'بیشتر', 'dots']];
 const TORN = ['torn-a', 'torn-b', 'torn-c'], TILTS = ['-1.4deg', '.9deg', '-.7deg', '1.3deg', '-1deg'];
-const sheet = (i, label, inner) => `<section class="sheetw"><span class="pushpin"></span>${label ? `<h3 class="stk sheet-label" style="--tilt:${TILTS[i % TILTS.length]}">${label}</h3>` : ''}<div class="paper ${TORN[i % TORN.length]} ${label ? 'sheet-body' : ''}">${inner}</div></section>`;
+const sheet = (i, label, inner, cls = '') => `<section class="sheetw"><span class="pushpin"></span>${label ? `<h3 class="stk sheet-label" style="--tilt:${TILTS[i % TILTS.length]}">${label}</h3>` : ''}<div class="paper ${cls} ${TORN[i % TORN.length]} ${label ? 'sheet-body' : ''}">${inner}</div></section>`;
 const head = (title, right = '') => `<div class="page-head"><h1 class="page-title">${title}</h1>${right ? `<div class="row wrap">${right}</div>` : ''}</div>`;
 const editBtn = () => `<button type="button" class="btn ${ui.edit ? 'pri' : ''} sm" data-a="edit.toggle">${icon(ui.edit ? 'check' : 'edit')}${ui.edit ? 'تموم شد' : 'ویرایش'}</button>`;
 const rng = v => fa(v).replace(/\s*[–-]\s*/g, ' تا ');
@@ -2416,7 +2448,7 @@ function pageToday() {
   const seg = `<div class="seg fit" role="group" aria-label="جلسه‌ی امروز">${D.program.days.map(d => `<button type="button" class="${day && day.id === d.id ? 'on' : ''}" data-a="today.session" data-id="${d.id}">${shortDay(d)}</button>`).join('')}<button type="button" class="${!day ? 'on' : ''}" data-a="today.session" data-id="">استراحت</button></div>`;
   const openId = day && openExercise(day, td);
   const work = day ? sheet(0, `${esc(day.name)} · ${fa(day.time)}`, day.items.map(it => exBlock(it, td, it.id === openId)).join('')) : '';
-  return head('امروز', seg) + `<div class="stack-lg">${work}${sheet(1, 'وعده‌ها', mealsBlock(td, wd))}</div>`;
+  return head('امروز', seg) + `<div class="stack-lg">${work}${sheet(1, 'وعده‌ها', mealsBlock(td, wd), 'note')}</div>`;
 }
 /* one exercise open at a time: the one you tapped, else the first that isn't finished */
 function openExercise(day, td) {
@@ -2425,54 +2457,95 @@ function openExercise(day, td) {
   const next = day.items.find(i => setsFor(td, i.id).length < (Number(i.sets) || 0));
   return next ? next.id : null;
 }
+/* ---------- sets: values are ready before you touch them, so a set is one tick ---------- */
+const repBottom = r => { const n = toLatin(r).match(/\d+/g); return n ? +n[0] : null; };
+const rirTarget = it => { const n = toLatin(it.rir).match(/\d+/g); return n ? +n[n.length - 1] : 2; };
+const stepOf = it => Number(it.step) || 2.5;
+const kgTxt = v => v == null ? '—' : fnum(v, 1);
+const setKey = (td, itemId, n) => `${td}|${itemId}|${n}`;
+ui.draft = {}; ui.extra = {};
+/* today's previous set, else last session's (one step heavier once you've earned it), else the bottom of the range */
+function suggestSet(it, td, k) {
+  const prev = setsFor(td, it.id).filter(s => s.n < k).pop();
+  if (prev) return { kg: prev.kg, reps: prev.reps, rir: prev.rir != null ? prev.rir : rirTarget(it) };
+  const last = lastSession(it.ex, td);
+  if (last && last.sets.length) {
+    const ls = last.sets.find(s => s.n === k) || last.sets[last.sets.length - 1];
+    if (progressHint(it, last)) return { kg: r1(ls.kg + stepOf(it)), reps: repBottom(it.reps) || ls.reps, rir: rirTarget(it) };
+    return { kg: ls.kg, reps: ls.reps, rir: rirTarget(it) };
+  }
+  return { kg: null, reps: repBottom(it.reps), rir: rirTarget(it) };
+}
+function setVal(it, td, k) {
+  const key = setKey(td, it.id, k), s = D.sets.find(x => x.id === key);
+  if (s) return { logged: true, kg: s.kg, reps: s.reps, rir: s.rir };
+  return Object.assign({ logged: false }, suggestSet(it, td, k), ui.draft[key] || {});
+}
 function exBlock(it, td, open) {
   const logged = setsFor(td, it.id), plan = Number(it.sets) || 0, isDone = plan && logged.length >= plan;
   const badge = isDone ? icon('check') : logged.length ? `${fa(logged.length)} از ${fa(plan)}` : `${fa(it.sets)} × ${rng(it.reps)}`;
-  const ribbon = `<button type="button" class="t-head ex-toggle" data-a="ex.open" data-id="${it.id}" aria-expanded="${open}"><span class="t-title">${esc(exShort(it.ex))}</span><span class="chip">${badge}</span></button>`;
-  if (!open) return `<div class="ex ${isDone ? 'done' : ''}">${ribbon}</div>`;
-  const last = lastSession(it.ex, td), hint = progressHint(it, last);
-  const n = Math.max(plan, logged.length ? logged[logged.length - 1].n : 0);
-  const rirPh = esc(fa(String(it.rir).split(/[–-]/).pop()));
+  const toggle = `<button type="button" class="ex-toggle" data-a="ex.open" data-id="${it.id}" aria-expanded="${open}"><span class="t-title">${esc(exShort(it.ex))}</span><span class="st">${badge}</span></button>`;
+  if (!open) return `<div class="ex ${isDone ? 'done' : ''}">${toggle}</div>`;
+  const last = lastSession(it.ex, td), hint = progressHint(it, last), nm = esc(exShort(it.ex));
+  const n = Math.max(plan + (ui.extra[it.id] || 0), logged.length ? logged[logged.length - 1].n : 0);
   const rows = Array.from({ length: n }, (_, i) => {
-    const k = i + 1, s = logged.find(x => x.n === k), ls = last && last.sets.find(x => x.n === k), nm = esc(exName(it.ex));
-    return `<div class="setrow ${s ? 'ok' : ''}" data-item="${it.id}" data-n="${k}"><span class="n">${fa(k)}</span>
-      <input class="inp" inputmode="decimal" name="kg" value="${s ? fa(s.kg) : ''}" placeholder="${ls ? fa(ls.kg) : ''}" aria-label="کیلو، ست ${fa(k)} ${nm}">
-      <input class="inp" inputmode="numeric" name="reps" value="${s ? fa(s.reps) : ''}" placeholder="${ls ? fa(ls.reps) : ''}" aria-label="تکرار، ست ${fa(k)} ${nm}">
-      <input class="inp" inputmode="numeric" name="rir" value="${s && s.rir != null ? fa(s.rir) : ''}" placeholder="${rirPh}" aria-label="RIR، ست ${fa(k)} ${nm}">
-      <input type="checkbox" class="chk" data-c="set.log" ${s ? 'checked' : ''} aria-label="ثبت ست ${fa(k)} ${nm}"></div>`;
+    const k = i + 1, key = setKey(td, it.id, k), v = setVal(it, td, k);
+    const stp = (f, txt, what) => `<div class="stp"><button type="button" class="pm" data-a="st.adj" data-key="${key}" data-f="${f}" data-d="1" aria-label="${what} بیشتر">+</button><button type="button" class="v" data-a="st.pick" data-key="${key}" aria-label="${what}: ${txt}، انتخاب با نوار">${txt}</button><button type="button" class="pm" data-a="st.adj" data-key="${key}" data-f="${f}" data-d="-1" aria-label="${what} کمتر">−</button></div>`;
+    return `<div class="setrow ${v.logged ? 'ok' : ''}"><input type="checkbox" class="chk" data-c="set.log" data-key="${key}" ${v.logged ? 'checked' : ''} aria-label="ست ${fa(k)} ${nm}">
+      ${stp('kg', kgTxt(v.kg), 'کیلو')}${stp('reps', fa(v.reps == null ? '—' : v.reps), 'تکرار')}
+      <button type="button" class="rir" data-a="st.rir" data-key="${key}" aria-label="RIR ${fa(v.rir)}">${fa(v.rir == null ? '—' : v.rir)}</button></div>`;
   }).join('');
-  const meta = [last ? `قبلی: ${last.sets.map(setStr).join('، ')}` : '', hint ? '<span class="up">وزنه رو سنگین‌تر کن</span>' : ''].filter(Boolean).join(' · ');
-  return `<div class="ex open ${isDone ? 'done' : ''}">${ribbon}
-    <div class="ex-body">${meta ? `<span class="t-meta">${meta}</span>` : ''}${it.note ? `<details><summary>نکته</summary>${esc(it.note)}</details>` : ''}
-    <div class="sethead"><span></span><span>کیلو</span><span>تکرار</span><span>RIR</span><span></span></div>${rows}
-    <button type="button" class="link addset" data-a="set.extra" data-item="${it.id}">+ ست</button></div></div>`;
+  const meta = [last ? `دفعه‌ی قبل: ${last.sets.map(s => `${fnum(s.kg, 1)}×${fa(s.reps)}`).join('، ')}` : 'بار اول: با نوار یا + وزنه رو پیدا کن', hint ? '<span class="up">یه پله سنگین‌تر گذاشتم</span>' : ''].filter(Boolean).join(' · ');
+  return `<div class="ex open ${isDone ? 'done' : ''}">${toggle}
+    <div class="ex-body"><span class="t-meta">${meta}</span>${it.note ? `<details><summary>نکته</summary>${esc(it.note)}</details>` : ''}
+    <div class="sethead"><span></span><span>کیلو</span><span>تکرار</span><span>RIR</span></div>${rows}
+    <button type="button" class="link addset" data-a="set.extra" data-item="${it.id}">+ یه ست دیگه</button></div></div>`;
 }
+function setCtx(key) { const [td, itemId, n] = String(key).split('|'), f = findItem(itemId); return f ? { td, itemId, n: +n, it: f.it, key } : null; }
+function applySet(c, patch) {
+  const s = D.sets.find(x => x.id === c.key);
+  if (s) { Object.assign(s, patch); commit(); } else { ui.draft[c.key] = Object.assign({}, ui.draft[c.key] || {}, patch); render(); }
+}
+function logSet(c) {
+  const v = setVal(c.it, c.td, c.n);
+  D.sets.push({ id: c.key, date: c.td, item: c.itemId, ex: c.it.ex, n: c.n, kg: v.kg, reps: v.reps, rir: v.rir });
+  delete ui.draft[c.key];
+  if (setsFor(c.td, c.itemId).length >= (Number(c.it.sets) || 0)) ui.openEx = null; /* finished: the next exercise opens */
+  commit();
+  startRest(Number(c.it.rest) || 60, exShort(c.it.ex));
+}
+A['st.adj'] = el => {
+  const c = setCtx(el.dataset.key); if (!c) return;
+  const v = setVal(c.it, c.td, c.n), d = +el.dataset.d;
+  if (el.dataset.f === 'kg') applySet(c, { kg: Math.max(0, r1((v.kg == null ? 0 : v.kg) + d * stepOf(c.it))) });
+  else applySet(c, { reps: Math.max(0, (v.reps || 0) + d) });
+};
+A['st.rir'] = el => { const c = setCtx(el.dataset.key); if (!c) return; const v = setVal(c.it, c.td, c.n); applySet(c, { rir: ((v.rir == null ? -1 : v.rir) + 1) % 5 }); };
+async function pickSet(key, logAfter) {
+  const c = setCtx(key); if (!c) return;
+  const v = setVal(c.it, c.td, c.n), step = stepOf(c.it), kg0 = v.kg == null ? 20 : v.kg, max = Math.max(150, kg0 + 40);
+  const body = `<div class="pick-big"><span id="pkV">${kgTxt(kg0)}</span> <small>کیلو</small></div>
+    <input type="range" class="slide" id="pkKg" min="0" max="${max}" step="${step}" value="${kg0}" aria-label="کیلو">
+    <div class="pick-big" style="font-size:30px;margin-top:8px"><span id="pkR">${fa(v.reps || 10)}</span> <small>تکرار</small></div>
+    <input type="range" class="slide" id="pkRp" min="1" max="30" step="1" value="${v.reps || 10}" aria-label="تکرار">`;
+  const p = modal(exShort(c.it.ex) + ` · ست ${fa(c.n)}`, body, [{ label: 'بی‌خیال', val: null, cls: 'ghost' }, { label: logAfter ? 'ثبت ست' : 'باشه', cls: 'pri', read: d => ({ kg: +$('#pkKg', d).value, reps: +$('#pkRp', d).value }) }]);
+  const dlg = $$('dialog').pop();
+  if (dlg) dlg.addEventListener('input', () => { $('#pkV', dlg).textContent = kgTxt(+$('#pkKg', dlg).value); $('#pkR', dlg).textContent = fa($('#pkRp', dlg).value); });
+  const r = await p; if (!r) return render();
+  if (logAfter && !D.sets.find(x => x.id === key)) { ui.draft[key] = Object.assign({}, ui.draft[key] || {}, r); logSet(c); }
+  else applySet(c, r);
+}
+A['st.pick'] = el => pickSet(el.dataset.key, false);
 function findItem(id) { for (const d of D.program.days) { const it = d.items.find(x => x.id === id); if (it) return { day: d, it }; } return null; }
 A['ex.open'] = el => { const { td, day } = sessionToday(); ui.openEx = openExercise(day, td) === el.dataset.id ? '__none' : el.dataset.id; render(); };
 A['today.session'] = el => { const { sched } = sessionToday(); const id = el.dataset.id; ui.session = (sched ? sched.id : '') === id ? null : id; render(); };
 C['set.log'] = el => {
-  const row = el.closest('.setrow'), itemId = row.dataset.item, n = +row.dataset.n, td = todayStr(), f = findItem(itemId);
-  if (!f) return;
-  const id = `${td}|${itemId}|${n}`;
-  if (!el.checked) { D.sets = D.sets.filter(s => s.id !== id); commit(); return; }
-  const val = k => { const i = row.querySelector(`[name=${k}]`), v = numIn(i.value); return v !== null ? v : numIn(i.placeholder); };
-  const kg = val('kg'), reps = val('reps'), rir = val('rir');
-  if (kg === null || reps === null) { el.checked = false; toast('کیلو و تکرار رو بنویس.', 'err'); return; }
-  const rec = { id, date: td, item: itemId, ex: f.it.ex, n, kg, reps, rir }, ex = D.sets.find(s => s.id === id);
-  if (ex) Object.assign(ex, rec); else D.sets.push(rec);
-  if (setsFor(td, itemId).length >= (Number(f.it.sets) || 0)) ui.openEx = null; /* finished: the next exercise opens */
-  commit();
-  startRest(Number(f.it.rest) || 60, exShort(f.it.ex));
+  const c = setCtx(el.dataset.key); if (!c) return;
+  if (!el.checked) { D.sets = D.sets.filter(s => s.id !== c.key); commit(); return; }
+  if (setVal(c.it, c.td, c.n).kg == null) { el.checked = false; pickSet(c.key, true); return; } /* first time ever: pick it once */
+  logSet(c);
 };
-A['set.extra'] = el => {
-  const f = findItem(el.dataset.item), td = todayStr(); if (!f) return;
-  const logged = setsFor(td, f.it.id), n = Math.max(Number(f.it.sets) || 0, logged.length ? logged[logged.length - 1].n : 0) + 1;
-  modal('ست اضافه', `<div class="grid3">${fld('کیلو', '<input id="xKg" inputmode="decimal">')}${fld('تکرار', '<input id="xRp" inputmode="numeric">')}${fld('RIR', '<input id="xRr" inputmode="numeric">')}</div>`,
-    [{ label: 'بی‌خیال', val: null, cls: 'ghost' }, { label: 'ثبت', cls: 'pri', read: d => ({ kg: numIn($('#xKg', d).value), reps: numIn($('#xRp', d).value), rir: numIn($('#xRr', d).value) }) }]).then(v => {
-    if (!v) return; if (v.kg === null || v.reps === null) { toast('کیلو و تکرار رو بنویس.', 'err'); return; }
-    D.sets.push({ id: `${td}|${f.it.id}|${n}`, date: td, item: f.it.id, ex: f.it.ex, n, kg: v.kg, reps: v.reps, rir: v.rir }); commit();
-  });
-};
+A['set.extra'] = el => { ui.extra[el.dataset.item] = (ui.extra[el.dataset.item] || 0) + 1; render(); };
 
 /* ---------- rest timer: HomoPlanner's dark pill ---------- */
 const T = { end: 0, total: 0, label: '', iv: 0 };
@@ -2497,7 +2570,7 @@ function mealsBlock(td, wd) {
     const chk = D.checks.find(c => c.id === `${td}|${m.id}`), opt = mealOpt(m, chk ? chk.opt : (ui.optPick || {})[m.id]);
     if (chk && opt) { const t = optionTotals(opt); kcal += t.kcal; p += t.p; }
     const opts = (m.options || []).length > 1 ? `<div class="opts">${m.options.map(o => `<button type="button" class="chip ${opt && opt.id === o.id ? 'on' : ''}" data-a="meal.opt" data-meal="${m.id}" data-opt="${o.id}">${esc(o.name)}</button>`).join('')}</div>` : '';
-    return `<div class="meal ${chk ? 'done' : ''}"><div class="t-head"><input type="checkbox" class="chk" data-c="meal.check" data-meal="${m.id}" ${chk ? 'checked' : ''} aria-label="خوردم: ${esc(m.name)}"><span class="t-title">${esc(m.name)}</span><span class="tm">${fa(mealTime(m, wd))}</span></div>${opts}<p class="t-desc">${itemsLine(opt)}</p></div>`;
+    return `<div class="meal ${chk ? 'done' : ''}"><input type="checkbox" class="chk" data-c="meal.check" data-meal="${m.id}" ${chk ? 'checked' : ''} aria-label="خوردم: ${esc(m.name)}"><div class="mbody"><div class="mtop"><b>${esc(m.name)}</b><span class="tm">${fa(mealTime(m, wd))}</span></div><div class="items">${itemsLine(opt)}</div>${opts}</div></div>`;
   }).join('');
   return rows + `<p class="sum">${fnum(kcal)} از ${fnum(tg.kcal)} کالری · ${fnum(p)} از ${fnum(tg.protein)} گرم پروتئین</p>`;
 }
@@ -2517,11 +2590,15 @@ A['meal.opt'] = el => {
 function pageProgram() {
   const V = volume(), P = D.program;
   const days = P.days.map((d, di) => sheet(di, `${esc(d.name)} · ${WD_LONG[d.wd] || ''} ${fa(d.time)}`,
-    `<div class="rows">${d.items.map((it, i) => `<div class="r"><span class="grow"><b>${esc(exShort(it.ex))}</b><br><small>${fa(it.sets)} × ${rng(it.reps)} · <bdi>RIR</bdi> ${rng(it.rir)} · استراحت ${fmtRest(it.rest)}</small></span>${ui.edit ? `<button type="button" class="icon-btn sm" data-a="item.move" data-day="${d.id}" data-i="${i}" data-dir="-1" aria-label="بالا">${icon('up')}</button><button type="button" class="icon-btn sm" data-a="item.edit" data-day="${d.id}" data-id="${it.id}" aria-label="ویرایش">${icon('edit')}</button>` : ''}</div>`).join('')}</div>
+    `<div class="rows">${d.items.map((it, i) => `<div class="r"><b class="grow">${esc(exShort(it.ex))}</b>${ui.edit ? '' : `<small>${fa(it.sets)} × ${rng(it.reps)}</small>`}${ui.edit ? `<button type="button" class="icon-btn sm" data-a="item.move" data-day="${d.id}" data-i="${i}" data-dir="-1" aria-label="بالا">${icon('up')}</button><button type="button" class="icon-btn sm" data-a="item.edit" data-day="${d.id}" data-id="${it.id}" aria-label="ویرایش">${icon('edit')}</button>` : ''}</div>`).join('')}</div>
     ${ui.edit ? `<div class="row wrap" style="margin-top:10px"><button type="button" class="btn sm" data-a="item.add" data-day="${d.id}">${icon('plus')}حرکت</button><button type="button" class="btn ghost sm" data-a="day.edit" data-day="${d.id}">${icon('gear')}روز و ساعت</button></div>` : ''}`)).join('');
   const st = r => r.st === 'ok' && !r.lowFreq ? `<span class="ok">${icon('check')}</span>` : r.st === 'optional' ? '<span class="opt">—</span>' : `<span class="bad">${r.st === 'low' ? 'کم' : r.st === 'high' ? 'زیاد' : 'یه بار'}</span>`;
-  const vol = sheet(P.days.length, 'ست در هفته', `<table class="vol"><tbody>${V.rows.filter(r => r.v > 0 || !OPTIONAL.has(r.m)).map(r => `<tr><td>${MUSCLES[r.m]}</td><td>${fnum(r.v, 1)}</td><td>${st(r)}</td></tr>`).join('')}</tbody></table>
-    <p class="hint" style="margin-top:8px">فشاری ${fnum(V.push, 1)} · کششی ${fnum(V.pull, 1)}${V.push > V.pull ? ' · <b style="color:var(--red)">فشاری بیشتر شد</b>' : ''}${ui.edit ? ` · <button type="button" class="link" data-a="range.edit">بازه: ${fa(P.minSets)} تا ${fa(P.maxSets)}</button>` : ''}</p>`);
+  const bad = V.rows.filter(r => (r.st === 'low' || r.st === 'high' || r.lowFreq) && !OPTIONAL.has(r.m));
+  const verdict = bad.length || V.push > V.pull
+    ? `<div class="warn-line">${[...bad.map(r => `${MUSCLES[r.m]}: ${r.st === 'low' ? 'کمه' : r.st === 'high' ? 'زیاده' : 'فقط یه بار در هفته'}`), V.push > V.pull ? 'فشاری از کششی بیشتر شد' : ''].filter(Boolean).join(' · ')}</div>`
+    : `<p><b>${icon('check')} همه‌ی عضله‌ها تو بازه‌ان.</b></p>`;
+  const vol = sheet(P.days.length, 'ست در هفته', verdict + `<details class="more"><summary>${icon('list')} جدول</summary><table class="vol"><tbody>${V.rows.filter(r => r.v > 0 || !OPTIONAL.has(r.m)).map(r => `<tr><td>${MUSCLES[r.m]}</td><td>${fnum(r.v, 1)}</td><td>${st(r)}</td></tr>`).join('')}</tbody></table>
+    <p class="hint" style="margin-top:8px">فشاری ${fnum(V.push, 1)} · کششی ${fnum(V.pull, 1)}${ui.edit ? ` · <button type="button" class="link" data-a="range.edit">بازه: ${fa(P.minSets)} تا ${fa(P.maxSets)}</button>` : ''}</p></details>`);
   return head('تمرین', editBtn()) + `<div class="sheets fit">${days}${vol}</div>`;
 }
 function exSelect(cur) {
@@ -2534,9 +2611,9 @@ async function editItem(day, it) {
   const restOpts = [45, 60, 90, 120, 150, 180, 240].map(s => `<option value="${s}" ${+it.rest === s ? 'selected' : ''}>${fmtRest(s)}</option>`).join('');
   const body = fld('حرکت', exSelect(it.ex)) +
     `<div class="grid3">${fld('ست', `<input id="eSets" inputmode="numeric" value="${fa(it.sets)}">`)}${fld('تکرار', `<input id="eReps" value="${esc(fa(it.reps))}">`)}${fld('RIR', `<input id="eRir" value="${esc(fa(it.rir))}">`)}</div>` +
-    `<div class="grid2">${fld('استراحت', `<select id="eRest">${restOpts}</select>`)}${fld('جایگزین', `<input id="eAlt" value="${esc(it.alt)}">`)}</div>` +
+    `<div class="grid3">${fld('استراحت', `<select id="eRest">${restOpts}</select>`)}${fld('پله‌ی وزنه (کیلو)', `<input id="eStep" inputmode="decimal" value="${fa(stepOf(it))}">`)}${fld('جایگزین', `<input id="eAlt" value="${esc(it.alt)}">`)}</div>` +
     fld('نکته', `<textarea id="eNote" rows="2">${esc(it.note)}</textarea>`);
-  const btns = [{ label: 'بی‌خیال', val: null, cls: 'ghost' }, { label: 'ذخیره', cls: 'pri', read: d => ({ ex: $('#eEx', d).value, sets: numIn($('#eSets', d).value) || 0, reps: toLatin($('#eReps', d).value).trim(), rir: toLatin($('#eRir', d).value).trim(), rest: +$('#eRest', d).value, alt: $('#eAlt', d).value.trim(), note: $('#eNote', d).value.trim() }) }];
+  const btns = [{ label: 'بی‌خیال', val: null, cls: 'ghost' }, { label: 'ذخیره', cls: 'pri', read: d => ({ ex: $('#eEx', d).value, sets: numIn($('#eSets', d).value) || 0, reps: toLatin($('#eReps', d).value).trim(), rir: toLatin($('#eRir', d).value).trim(), rest: +$('#eRest', d).value, step: numIn($('#eStep', d).value) || 2.5, alt: $('#eAlt', d).value.trim(), note: $('#eNote', d).value.trim() }) }];
   if (!isNew) btns.unshift({ label: 'حذف', val: 'del', cls: 'danger' });
   const v = await modal(isNew ? 'حرکت تازه' : 'ویرایش حرکت', body, btns, 'm');
   if (!v) return;
@@ -2574,14 +2651,14 @@ function pageFood() {
   const stats = `<div class="stat-row"><div class="stat"><b>${fnum(t.kcal)}</b><span>کالری · هدف ${fnum(M.targets.kcal)}</span></div><div class="stat"><b>${fnum(t.p)}</b><span>پروتئین · حداقل ${fnum(M.targets.protein)}</span></div><div class="stat"><b>${fnum(t.c)}</b><span>کربوهیدرات</span></div><div class="stat"><b>${fnum(t.f)}</b><span>چربی</span></div></div>`;
   const meals = M.list.map(m => {
     const def = mealOpt(m), tt = def ? optionTotals(def) : { kcal: 0 };
-    if (!ui.edit) return `<div class="meal"><div class="t-head"><span class="t-title">${esc(m.name)}</span><span class="tm">${fa(m.time)}</span><span class="kc">${fnum(tt.kcal)} کالری</span></div><p class="t-desc">${itemsLine(def)}</p>${m.options.length > 1 ? `<p class="t-desc">جایگزین: ${m.options.slice(1).map(o => esc(o.name)).join(' · ')}</p>` : ''}</div>`;
-    return `<div class="meal"><div class="t-head"><span class="t-title">${esc(m.name)}</span><span class="tm">${fa(m.time)}</span><button type="button" class="icon-btn sm" data-a="meal.edit" data-meal="${m.id}" aria-label="تنظیم وعده">${icon('gear')}</button></div>
+    if (!ui.edit) return `<div class="r"><span class="grow"><b>${esc(m.name)}</b><br><small>${itemsLine(def)}${m.options.length > 1 ? ` · یا ${m.options.slice(1).map(o => esc(o.name)).join(' یا ')}` : ''}</small></span><span class="chip">${fnum(tt.kcal)} کالری</span></div>`;
+    return `<div class="meal-ed"><div class="t-head"><span class="t-title">${esc(m.name)}</span><span class="tm">${fa(m.time)}</span><button type="button" class="icon-btn sm" data-a="meal.edit" data-meal="${m.id}" aria-label="تنظیم وعده">${icon('gear')}</button></div>
       ${m.options.map(o => { const ot = optionTotals(o); return `<div class="rows" style="padding:4px 6px"><h4>${esc(o.name)} · ${fnum(ot.kcal)} کالری · ${fnum(ot.p)} گرم پروتئین <button type="button" class="link" data-a="opt.edit" data-meal="${m.id}" data-opt="${o.id}">تغییر</button></h4>${o.items.map(i => { const mm = itemMacros(i); return `<div class="r"><span class="grow"><b>${esc(i.food ? (foodOf(i.food) || { fa: '؟' }).fa : i.name)}</b> <small>${esc(i.label || '')} · ${fnum(mm.kcal)} کالری</small></span><button type="button" class="icon-btn sm" data-a="fitem.edit" data-meal="${m.id}" data-opt="${o.id}" data-id="${i.id}" aria-label="ویرایش">${icon('edit')}</button></div>`; }).join('')}<button type="button" class="link" data-a="fitem.add" data-meal="${m.id}" data-opt="${o.id}">+ خوراکی</button></div>`; }).join('')}
       <button type="button" class="link" style="margin:4px 6px" data-a="opt.add" data-meal="${m.id}">+ گزینه‌ی جایگزین</button></div>`;
   }).join('');
   const right = editBtn() + (ui.edit ? `<button type="button" class="btn sm" data-a="targets.edit">هدف‌ها</button><button type="button" class="btn sm" data-a="meal.add">${icon('plus')}وعده</button>` : '');
   return head('تغذیه', right) + stats + (warns.length ? `<div class="warns" style="margin-top:14px">${warns.map(w => `<div class="warn-line">${w.text}</div>`).join('')}</div>` : '') +
-    `<div class="stack-lg">${sheet(0, 'وعده‌ها', meals)}</div>`;
+    `<div class="stack-lg">${sheet(0, 'وعده‌ها', ui.edit ? meals : `<div class="rows">${meals}</div>`)}</div>`;
 }
 const findMeal = id => D.meals.list.find(m => m.id === id);
 A['targets.edit'] = async () => {
